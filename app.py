@@ -134,6 +134,12 @@ HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-CbY9wfRmzgUqUEQ3iH5bZ.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
     <title>This is Stupid af</title>
     <style>
         body { 
