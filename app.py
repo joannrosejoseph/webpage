@@ -134,7 +134,7 @@ HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Love Heart</title>
+    <title>This is Stupid af</title>
     <style>
         body { 
             background-color: {{ bg }}; 
