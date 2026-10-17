@@ -1,8 +1,12 @@
 import math as m
 import random as r
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, request
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
+
+# --- Added ProxyFix to get the real visitor IP behind Render's load balancer ---
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 # --- Your original math and variables ---
 SC = 21
@@ -190,6 +194,10 @@ HTML_TEMPLATE = """
 
 @app.route('/')
 def home():
+    # --- This grabs the real visitor IP and prints it to Render logs ---
+    visitor_ip = request.remote_addr
+    print(f"NEW VISITOR IP: {visitor_ip}", flush=True)
+
     # Run the heart calculation when someone visits the page
     items = build()
     return render_template_string(HTML_TEMPLATE, items=items, bg=BG)
